@@ -13,9 +13,6 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/HomeController.php',
-        ]);
+        return $this->render("home/index.html.twig");
     }
 }
