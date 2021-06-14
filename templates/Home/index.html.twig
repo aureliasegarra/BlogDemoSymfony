@@ -5,5 +5,17 @@
 {% block body %}
 
 <h1> Bienvenue sur la page d'accueil </h1>
+    <div class="row">
+        {% for article in articles %}
+            <div class="card col-md-4" style="width: 18rem;">
+                <p class="date">Ecrit le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }}</p>
+                <img class="card-img-top" src="{{ article.image }}" alt="{{ article.image }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <a href="{{ path('show', {'id':article.id})}}" class="btn btn-primary">En savoir plus</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
