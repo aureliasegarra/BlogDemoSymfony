@@ -17,8 +17,9 @@
 
 ## How to use 
 
+### Launch MAMP server
 
-### Launch the development server & meeting on http://localhost:8080/
+### Launch the development server & meeting on http://localhost:8000/
 ``` php
 symfony server:start
 ```
