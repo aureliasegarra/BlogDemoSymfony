@@ -55,6 +55,8 @@ class User
      */
     private $articles;
 
+    private $passwordConfirm;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -69,6 +71,18 @@ class User
     public function getUsername(): ?string
     {
         return $this->username;
+    }
+
+    public function getPasswordConfirm(): ?string
+    {
+        return $this->passwordConfirm;
+    }
+
+    public function setPasswordConfirm(string $passwordConfirm): self
+    {
+        $this->passwordConfirm = $passwordConfirm;
+
+        return $this;
     }
 
     public function __toString()
