@@ -4,19 +4,38 @@
 
 {% block body %}
 
-<h1> Bienvenue sur la page d'accueil </h1>
+<h1 class="title p-1 text-center"> Bienvenue sur le Blog </h1>
+
     <div class="row">
-        {% for article in articles %}
-            <div class="card col-md-4" style="width: 18rem;">
-                <p class="date">Ecrit le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }} 
-                par <span class="author">{{ article.author }}</span></p>
-                <img class="card-img-top" src="{{ article.image }}" alt="{{ article.image }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ article.title }}</h5>
-                    <a href="{{ path('show', {'id':article.id})}}" class="btn btn-primary">En savoir plus</a>
-                </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                {% for article in articles %}
+
+                    <div class="card col-md-4" style="width: 18rem;">
+                        <p class="date">Ecrit le {{ article.createdAt | date("d/m/Y") }} à {{ article.createdAt | date("H:i") }} 
+                        par <span class="author">{{ article.author }}</span></p>
+                        <img class="card-img-top" src="{{ article.image }}" alt="{{ article.image }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <a href="{{ path('show', {'id':article.id})}}" class="btn btn-primary">En savoir plus</a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
             </div>
-        {% endfor %}
+        </div>
+        <div class="col-md-4">
+        <h2>Categories</h2>
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center m-1>
+                        <a href="{{ path('show_article', {'id':category.id}) }}"> {{ category.title}} </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
 {% endblock %}
