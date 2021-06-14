@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,12 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +112,7 @@ class Article
     public function getCategory(): ?Category
     {
         return $this->category;
+
     }
 
     public function setCategory(?Category $category): self
