@@ -10,9 +10,13 @@
 - HTML5 / CSS3 
 - Bootstrap
 - PHP / Symfony5
+- Doctrine
+- security
+- easy admin
+- faker
 
 ## Goals 
-- Discover Symfony5
+- Discover Symfony5 and Symfony ecosystem
 - Practice PHP
 
 ## How to use 
@@ -25,7 +29,7 @@ symfony server:start
 ```
 
 ## Status
-Project not completed
+Project completed
 
 ## Context
 Project developed as a junior web developer
