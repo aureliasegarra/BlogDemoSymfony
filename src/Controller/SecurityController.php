@@ -8,7 +8,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SecurityController extends AbstractController
 {
@@ -21,7 +25,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="security_register")
      */
-    public function register(Request $request): Response
+    public function register(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -31,6 +35,10 @@ class SecurityController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             // data form treatment => manager
+            $password_hash = $encoder->hashPassword($user, $user->getPassword());
+
+            $user->setPassword($password_hash);
+
             $this->manager->persist($user);
             $this->manager->flush();
             return $this->redirectToRoute('home');
