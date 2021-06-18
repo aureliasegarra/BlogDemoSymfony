@@ -25,7 +25,14 @@
                         </a>
                     </li>
                 </ul>
-                <a href="{{ path('security_register') }}" class="btn btn-success">Inscription</a>
+                {% if app.user %}
+                    <a href="{{ path('security_logout') }}" class="btn btn-success m-1">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('security_register') }}" class="btn btn-success m-1">Inscription</a>
+                    <a href="{{ path('security_login') }}" class="btn btn-success m-1">Connexion</a>
+                    
+                {% endif %}
+                
             </div>
         </div>
         </nav>
